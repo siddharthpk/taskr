@@ -18,8 +18,39 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
     // Choosing DB to perfrom insert op
     const db = client.db(databaseName)
 
+    /*
+    Inserting one user
+    
     db.collection('users').insertOne({
         name: 'sid',
         age: 23
+    }, (error, result) => {
+        if(error){
+            return console.log('Unable to insert user')
+        }
+
+        console.log(result.ops)
     })
+
+    */
+
+    /* Inserting many users*/
+    db.collection('users').insertMany([
+        {
+            name: 'Rachel',
+            age: 28
+        },{
+            name:  'Ross',
+            age: 30
+        }
+
+    ], (error,result)=>{
+        if(error){
+            return console.log('Unable to insert user')
+        }
+
+        console.log(result.ops)
+    })
+
+
 })
