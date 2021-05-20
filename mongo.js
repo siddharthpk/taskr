@@ -15,8 +15,9 @@ const connectURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'taskr'
 
 const id = new ObjectID()
-console.log(id)
+console.log(id.id.length)
 console.log(id.getTimestamp())  //Getting the time stamp stored in the first 4 bytes of the ObjectID
+console.log(id.toHexString().length) //Getting a 24byte hex respresentation of ObjectID
 
 // Initiating a connection to MongoDB
 MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error,client)=>{
@@ -30,7 +31,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
     /*
     Inserting one user
-    */
+    
     
     db.collection('users').insertOne({
         _id: id,
@@ -43,29 +44,11 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
         console.log(result.ops)
     })
-
     
 
-    /* Inserting many users
-    db.collection('users').insertMany([
-        {
-            name: 'Rachel',
-            age: 28
-        },{
-            name:  'Ross',
-            age: 30
-        }
-
-    ], (error,result)=>{
-        if(error){
-            return console.log('Unable to insert user')
-        }
-
-        console.log(result.ops)
-    })
-
+    /*
+    Inserting many  user
     
-
     db.collection('tasks').insertMany([
         {
             description: 'Complete Task 1',
@@ -86,7 +69,6 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
         console.log(result.ops)
     })
-
     */
 
 
