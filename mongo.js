@@ -1,5 +1,4 @@
 // CRUD operations
-
 /*
 Importing required modules
 const mongodb = require('mongodb')
@@ -14,11 +13,6 @@ const {MongoClient, ObjectID} = require('mongodb')
 const connectURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'taskr'
 
-const id = new ObjectID()
-console.log(id.id.length)
-console.log(id.getTimestamp())  //Getting the time stamp stored in the first 4 bytes of the ObjectID
-console.log(id.toHexString().length) //Getting a 24byte hex respresentation of ObjectID
-
 // Initiating a connection to MongoDB
 MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error,client)=>{
     if(error){
@@ -29,6 +23,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
     // Choosing DB to perfrom insert op
     const db = client.db(databaseName)
 
+    /* ****** CREATE ******** */
     /*
     Inserting one user
     */
@@ -72,8 +67,58 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
             console.log(result.ops)
         })
    }
-   
+
+   /* ****** READ ******** */
+
+   //FindOne returns first matching document by default
+   const FindOne = () => {
+            db.collection('users').findOne({
+            name: 'sid',
+            _id: new ObjectID("60a4cafee95b9870a3202c42") // For searaching by id remember to convert to string as it is binary by default
+        }, (error,user)=>{
+                if(error){
+                    return console.log('Unable to fetch')
+                }
+
+                console.log(user)
+        })
+    }
+
+   //Find creates a cursor that can be used to iterate over the results,
+   const FindMany = () => {
+       //toArray is a cursoor
+        db.collection('users').find({
+            age: 23
+        }).toArray((error,users)=>{
+            console.log(users)
+        })
+
+        //count is a cursor 
+        db.collection('users').find({
+            age: 23
+        }).count((error,users)=>{
+            console.log(users)
+        })
+   }
+   // Reading last task in tasks collection
+   db.collection('tasks').findOne({
+       _id: new ObjectID("60a6084691f71f174d814328")
+   }, (error,user)=>{
+        if(error){
+            return console.log('Unable to find!')
+        }
+
+        console.log(user)
+   })
+
+   //Reading all incomplete tasks
+   db.collection('tasks').find({
+       completed: false
+   }).toArray((error,users)=>{
+       console.log(users)
+   })
+
+
     
-
-
-})
+   
+}) 
