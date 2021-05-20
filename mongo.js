@@ -34,7 +34,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
     */
 
-    /* Inserting many users*/
+    /* Inserting many users
     db.collection('users').insertMany([
         {
             name: 'Rachel',
@@ -47,6 +47,29 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
     ], (error,result)=>{
         if(error){
             return console.log('Unable to insert user')
+        }
+
+        console.log(result.ops)
+    })
+
+    */
+
+    db.collection('tasks').insertMany([
+        {
+            description: 'Complete Task 1',
+            completed: true
+        }, 
+        {
+            description: 'Complete Task 2',
+            completed: false
+        },
+        {
+            description: 'Complete Task 3',
+            completed: true
+        },
+    ], (error, result)=>{
+        if(error){
+            return console.log('Unable to insert task!')
         }
 
         console.log(result.ops)
