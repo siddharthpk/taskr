@@ -1,12 +1,22 @@
 // CRUD operations
 
-// Importing required modules
+/*
+Importing required modules
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
+const ObjectID = mongodb.ObjectID
+*/
+
+//Using shorthand to import fucntions from mongodb module
+const {MongoClient, ObjectID} = require('mongodb')
 
 // Connect Url and db name
 const connectURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'taskr'
+
+const id = new ObjectID()
+console.log(id)
+console.log(id.getTimestamp())  //Getting the time stamp stored in the first 4 bytes of the ObjectID
 
 // Initiating a connection to MongoDB
 MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true}, (error,client)=>{
@@ -20,10 +30,12 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
     /*
     Inserting one user
+    */
     
     db.collection('users').insertOne({
-        name: 'sid',
-        age: 23
+        _id: id,
+        name: 'Dale',
+        age: 25
     }, (error, result) => {
         if(error){
             return console.log('Unable to insert user')
@@ -32,7 +44,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         console.log(result.ops)
     })
 
-    */
+    
 
     /* Inserting many users
     db.collection('users').insertMany([
@@ -52,7 +64,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         console.log(result.ops)
     })
 
-    */
+    
 
     db.collection('tasks').insertMany([
         {
@@ -74,6 +86,8 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
         console.log(result.ops)
     })
+
+    */
 
 
 })
