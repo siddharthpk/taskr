@@ -82,11 +82,21 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
                 console.log(user)
         })
+            // Reading last task in tasks collection
+            db.collection('tasks').findOne({
+            _id: new ObjectID("60a6084691f71f174d814328")
+        }, (error,user)=>{
+            if(error){
+                return console.log('Unable to find!')
+            }
+
+            console.log(user)
+            })
     }
 
    //Find creates a cursor that can be used to iterate over the results,
    const FindMany = () => {
-       //toArray is a cursoor
+       //toArray is a cursor
         db.collection('users').find({
             age: 23
         }).toArray((error,users)=>{
@@ -99,26 +109,13 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         }).count((error,users)=>{
             console.log(users)
         })
+        
+        //Reading all incomplete tasks
+        db.collection('tasks').find({
+            completed: false
+        }).toArray((error,users)=>{
+            console.log(users)
+        })
    }
-   // Reading last task in tasks collection
-   db.collection('tasks').findOne({
-       _id: new ObjectID("60a6084691f71f174d814328")
-   }, (error,user)=>{
-        if(error){
-            return console.log('Unable to find!')
-        }
 
-        console.log(user)
-   })
-
-   //Reading all incomplete tasks
-   db.collection('tasks').find({
-       completed: false
-   }).toArray((error,users)=>{
-       console.log(users)
-   })
-
-
-    
-   
 }) 
