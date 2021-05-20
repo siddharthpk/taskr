@@ -31,45 +31,49 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
 
     /*
     Inserting one user
-    
-    
-    db.collection('users').insertOne({
-        _id: id,
-        name: 'Dale',
-        age: 25
-    }, (error, result) => {
-        if(error){
-            return console.log('Unable to insert user')
-        }
+    */
+    const insert1 = () =>{
+        db.collection('users').insertOne(
+            {
+            _id: id,
+            name: 'Dale',
+            age: 25
+             }, (error, result) => {
+            if(error){
+                return console.log('Unable to insert user')
+            }
 
-        console.log(result.ops)
-    })
-    
+            console.log(result.ops)
+         })
+    }
 
     /*
     Inserting many  user
-    
-    db.collection('tasks').insertMany([
-        {
-            description: 'Complete Task 1',
-            completed: true
-        }, 
-        {
-            description: 'Complete Task 2',
-            completed: false
-        },
-        {
-            description: 'Complete Task 3',
-            completed: true
-        },
-    ], (error, result)=>{
-        if(error){
-            return console.log('Unable to insert task!')
-        }
+    */ 
+   const InsertMany = () =>{
+        db.collection('tasks').insertMany([
+            {
+                description: 'Complete Task 1',
+                completed: true
+            }, 
+            {
+                description: 'Complete Task 2',
+                completed: false
+            },
+            {
+                description: 'Complete Task 3',
+                completed: true
+            },
+        ], (error, result)=>{
+            if(error){
+                return console.log('Unable to insert task!')
+            }
 
-        console.log(result.ops)
-    })
-    */
+            console.log(result.ops)
+        })
+   }
+   
+    
 
 
 })
