@@ -118,4 +118,20 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         })
    }
 
+   /* ****** UPDATE using Promises ******** */
+   const UpdateDB_One = db.collection('users').updateOne({
+            _id: new ObjectID("60a4cafee95b9870a3202c42")
+        },{
+            $set:{
+                name: 'Sid'
+            },
+            $inc: {
+                age: 1
+            }
+        }).then((result)=>{
+            console.log(result)
+        }).catch((error)=>{
+            console.log(error)
+    })
+
 }) 
