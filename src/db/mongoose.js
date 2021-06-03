@@ -6,6 +6,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/taskr-api'),{
     useCreateIndex: true
 }
 
+/************* Users Model *************/
+
 // Create a User model 
 const User = mongoose.model('User',{
     name: {
@@ -29,3 +31,29 @@ me.save().then(()=>{
 }).catch((error)=>{
     console.log('Error', error)
 })
+
+/************* Task Model *************/
+
+// Creating a Task model
+const Task = mongoose.model('Task',{
+    description:{
+        type: String
+    },
+    completed:{
+        type: Boolean
+    }
+})
+
+// Adding a new task
+const task = new Task({
+    description: 'Adding first doc',
+    completed: false
+})
+
+// Saving the task
+task.save().then(()=>{
+    console.log(task)
+}).catch((error)=>[
+    console.log(error)
+])
+
