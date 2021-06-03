@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/siddharthpk/taskr#readme",
   "dependencies": {
-    "mongodb": "^3.6.7"
+    "mongodb": "^3.6.7",
+    "mongoose": "^5.12.12"
   }
 }
