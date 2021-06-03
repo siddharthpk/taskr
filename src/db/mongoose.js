@@ -49,28 +49,28 @@ me.save().then(()=>{
     console.log('Error', error)
 })
 
-// /************* Task Model *************/
+/************* Task Model *************/
 
-// // Creating a Task model
-// const Task = mongoose.model('Task',{
-//     description:{
-//         type: String
-//     },
-//     completed:{
-//         type: Boolean
-//     }
-// })
+// Creating a Task model
+const Task = mongoose.model('Task',{
+    description:{
+        type: String
+    },
+    completed:{
+        type: Boolean
+    }
+})
 
-// // Adding a new task
-// const task = new Task({
-//     description: 'Adding first doc',
-//     completed: false
-// })
+// Adding a new task
+const task = new Task({
+    description: 'Adding first doc',
+    completed: false
+})
 
-// // Saving the task
-// task.save().then(()=>{
-//     console.log(task)
-// }).catch((error)=>[
-//     console.log(error)
-// ])
+// Saving the task
+task.save().then(()=>{
+    console.log(task)
+}).catch((error)=>[
+    console.log(error)
+])
 
