@@ -68,7 +68,7 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         })
    }
 
-   /* ****** READ ******** */
+   /* ******** READ ******** */
 
    //FindOne returns first matching document by default
    const FindOne = () => {
@@ -119,6 +119,8 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
    }
 
    /* ****** UPDATE using Promises ******** */
+
+    /* ******** Updating one document ******** */
    const UpdateDB_One = db.collection('users').updateOne({
             _id: new ObjectID("60a4cafee95b9870a3202c42")
         },{
@@ -133,5 +135,36 @@ MongoClient.connect(connectURL, {useNewUrlParser: true, useUnifiedTopology: true
         }).catch((error)=>{
             console.log(error)
     })
+    /* ******** Updating multiple documents ******** */
+    const UpdateDB_Many = db.collection('tasks').updateMany({
+        completed: false
+    },{
+        $set:{
+            completed:true
+        }
+    }).then((result)=>{
+        console.log(result.modifiedCount)
+    }).catch((error)=>{
+        console.log(error)
+    })
 
+    /* ******** DELETE ******** */
+
+    /* ******** Deleting multiple document ******** */
+    const DeleteDB_Many = db.collection('users').deleteMany({
+        age: 23
+    }).then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
+    })
+
+    /* ******** Deleting one document ******** */
+    db.collection('tasks').deleteOne({
+        description : "Complete Task 1"
+    }).then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
+    })
 }) 
