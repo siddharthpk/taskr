@@ -13,10 +13,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/taskr-api'),{
 const User = mongoose.model('User',{
     name: {
         type: String,
-        required: true  // Validation added (In-built)
+        required: true,  // Validation added (In-built)
+        trim: true
     },
     age: {
         type: Number,
+        default: 0,
         validate(value){    // Custom validator
             if(value<0){
                 throw new Error('Age must be > 0')
@@ -26,6 +28,8 @@ const User = mongoose.model('User',{
     email: {
         type: String,
         required: true,
+        trim: true,
+        lowercase: true,
         validate(value){
             if(!validator.isEmail(value)){
                 throw new Error('Email is invalid')
@@ -37,9 +41,8 @@ const User = mongoose.model('User',{
 // Using the model above to perform operations on DB, returns a validation error if wrong type
 
 const me = new User({
-    name: 'Tom',
-    age: 25,
-    email:'tom@'
+    name: '    Siddharth  ',
+    email:'  email@domain.com'
 })
 
 // Saving the data, returns a promise
@@ -49,7 +52,7 @@ me.save().then(()=>{
     console.log('Error', error)
 })
 
-/************* Task Model *************/
+// /************* Task Model *************/
 
 // Creating a Task model
 const Task = mongoose.model('Task',{
