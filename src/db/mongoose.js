@@ -35,14 +35,30 @@ const User = mongoose.model('User',{
                 throw new Error('Email is invalid')
             }
         }
+    },
+    password:{
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 7,
+        validate(value){
+            if(value.toLowerCase.includes('password')){
+                throw new Error('You cannot use "password" as a password')
+            }
+        }
+
     }
 })
 
 // Using the model above to perform operations on DB, returns a validation error if wrong type
 
 const me = new User({
-    name: '    Siddharth  ',
-    email:'  email@domain.com'
+    name: '    Timmy',
+    age: 24,
+    email:'  email@domain.com',
+    password: 'passw'
+    
+
 })
 
 // Saving the data, returns a promise
