@@ -11,18 +11,24 @@ mongoose.connect('mongodb://127.0.0.1:27017/taskr-api'),{
 // Create a User model 
 const User = mongoose.model('User',{
     name: {
-        type: String
+        type: String,
+        required: true  // Validation added (In-built)
     },
     age: {
-        type: Number
+        type: Number,
+        validate(value){    // Custom validator
+            if(value<0){
+                throw new Error('Age must be > 0')
+            }
+        }
     }
 })
 
 // Using the model above to perform operations on DB, returns a validation error if wrong type
 
 const me = new User({
-    name: 'Sid',
-    age: 23
+    name: 'Tom',
+    age: -1
 })
 
 // Saving the data, returns a promise
