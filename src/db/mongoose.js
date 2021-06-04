@@ -57,8 +57,6 @@ const me = new User({
     age: 24,
     email:'  email@domain.com',
     password: 'passw'
-    
-
 })
 
 // Saving the data, returns a promise
@@ -73,17 +71,19 @@ me.save().then(()=>{
 // Creating a Task model
 const Task = mongoose.model('Task',{
     description:{
-        type: String
+        type: String,
+        required: true,
+        trim: true
     },
     completed:{
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 })
 
 // Adding a new task
 const task = new Task({
-    description: 'Adding first doc',
-    completed: false
+    description: '    1+1=3'
 })
 
 // Saving the task
