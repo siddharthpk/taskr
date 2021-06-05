@@ -1,6 +1,6 @@
 # taskr
  
-This repo hosts code for a minimalistic Task App that interacts with a REST API to perform operation on a MongoDB database
+This repo hosts code for a minimalistic Task App that interacts with a REST API to perform operations to a MongoDB database. 
 
 # Before Deployment
 
@@ -15,6 +15,15 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 - Visit `localhost:3000` in a browser window to access the REST API
 
 # Concepts learned:
+
+- MongoDB and Mongoose
+- Promises
+- REST API
+- Promise Chaining
+- Async/Await
+- Authentication using JWT 
+- Middleware
+- Postman
   
 
 # Deployment
