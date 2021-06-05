@@ -1,4 +1,4 @@
-# Taske
+# Taskr
  
 This repo hosts code for a minimalistic Task App that interacts with a REST API to perform operations to a MongoDB database. 
 
