@@ -23,7 +23,8 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 - Async/Await
 - Authentication using JWT 
 - Middleware
-- Postman
+- API Testing with Postman
+- Software Testing with Jest
   
 
 # Deployment
