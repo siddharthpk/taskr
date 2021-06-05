@@ -14,6 +14,8 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 - Visit `localhost:3000` in a browser window to access the REST API
 
+# API Testing ( Screenshots included )
+
 # Concepts learned:
 
 - MongoDB and Mongoose
