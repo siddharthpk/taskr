@@ -41,6 +41,7 @@ app.post('/tasks', (req,res)=>{
 
 /* Resource Reading Using GET */
 
+/* USER Model */
 app.get('/users', (req,res)=>{
     User.find({}).then((users)=>{
         res.send(users)
@@ -58,6 +59,31 @@ app.get('/users/:id', (req,res)=>{
             return res.status(404).send()
         }
         res.send(user)
+    }).catch((e)=>{
+        res.status(500).send()
+    })
+
+})
+
+/* TASK Model */
+
+app.get('/tasks', (req,res)=>{
+    Task.find({}).then((tasks)=>{
+        res.send(tasks)
+    }).catch((e)=>{
+        res.status(500).send()
+    })
+})
+
+// Read user by ID, using express route params
+app.get('/tasks/:id', (req,res)=>{
+    const _id = req.params.id
+
+    Task.findById(_id).then((task)=>{
+        if(!task){
+            return res.status(404).send()
+        }
+        res.send(task)
     }).catch((e)=>{
         res.status(500).send()
     })
