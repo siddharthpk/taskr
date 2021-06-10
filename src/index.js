@@ -15,7 +15,9 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 
 
-// Resource creation using POST
+/* Resource creation using POST */
+
+// User Creation
 app.post('/users',(req,res) =>{
     const user = new User(req.body)
 
@@ -26,7 +28,7 @@ app.post('/users',(req,res) =>{
     })
 })
 
-// Task creation using POST
+// Task Creation 
 app.post('/tasks', (req,res)=>{
     const task = new Task(req.body)
 
@@ -36,6 +38,32 @@ app.post('/tasks', (req,res)=>{
         res.status(400).send(e)
     })
 })
+
+/* Resource Reading Using GET */
+
+app.get('/users', (req,res)=>{
+    User.find({}).then((users)=>{
+        res.send(users)
+    }).catch((e)=>{
+        res.status(500).send()
+    })
+})
+
+// Read user by ID, using express route params
+app.get('/users/:id', (req,res)=>{
+    const _id = req.params.id
+
+    User.findById(_id).then((user)=>{
+        if(!user){
+            return res.status(404).send()
+        }
+        res.send(user)
+    }).catch((e)=>{
+        res.status(500).send()
+    })
+
+})
+
 
 // Start server listening
 app.listen(port, ()=>{
