@@ -1,4 +1,4 @@
-require('./../db/mongoose')
+require('../db/mongoose')
 const User = require('./../models/user')
 
 User.findByIdAndUpdate('60c184719740833369d183ff', {age: 0}).then((user)=>{
