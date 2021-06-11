@@ -18,14 +18,16 @@ app.use(express.json())
 /* Resource creation using POST */
 
 // User Creation
-app.post('/users',(req,res) =>{
+app.post('/users', async (req,res) =>{
     const user = new User(req.body)
-
-    user.save().then(()=>{
+   
+    try{
+        await user.save()
         res.status(201).send(user)
-    }).catch((e)=>{
+    } catch (e){
         res.status(400).send(e)
-    })
+    }
+    
 })
 
 // Task Creation 
@@ -42,27 +44,29 @@ app.post('/tasks', (req,res)=>{
 /* Resource Reading Using GET */
 
 /* USER Model */
-app.get('/users', (req,res)=>{
-    User.find({}).then((users)=>{
-        res.send(users)
-    }).catch((e)=>{
+app.get('/users', async (req,res)=>{
+    try{
+        const user = await User.find({})
+        res.send(user)
+    } catch(e){
         res.status(500).send()
-    })
+    }
 })
 
 // Read user by ID, using express route params
-app.get('/users/:id', (req,res)=>{
+app.get('/users/:id', async (req,res)=>{
     const _id = req.params.id
 
-    User.findById(_id).then((user)=>{
+    try{
+        const user = await User.findById(_id)
+
         if(!user){
             return res.status(404).send()
         }
         res.send(user)
-    }).catch((e)=>{
+    } catch (e){
         res.status(500).send()
-    })
-
+    }
 })
 
 /* TASK Model */
