@@ -99,6 +99,30 @@ app.get('/tasks/:id', async (req,res)=>{
     }
 })
 
+/* Resource Reading Using PATCH */
+
+/* User Model */
+app.patch('/users/:id', async (req,res)=>{
+    const toUpdate = Object.keys(req.body)
+    const allowUpdate = ['name','eamil','password','age']
+    const isValidOp = toUpdate.every((update)=>  allowUpdate.includes(update))
+
+    if (!isValidOp){
+        return res.status(400).send({error: 'Invalid updates'})
+    }
+    
+    try{
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators:true})
+
+        if(!user){
+            return res.status(404).send()
+        }
+        res.send(user)
+    }catch(e){
+        res.status(400).send(e)
+    }
+})
+
 
 // Start server listening
 app.listen(port, ()=>{
