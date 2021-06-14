@@ -145,6 +145,35 @@ app.patch('/tasks/:id', async (req,res)=>{
     }
 })
 
+/* Resource Deleting Using DELETE */
+
+/* User Model */
+app.delete('/users/:id', async(req,res)=>{
+    try{
+        const user = await User.findByIdAndDelete(req.params.id)
+
+        if(!user){
+            return res.status(404).send()
+        }
+        res.send(user)
+    }catch(e){
+        res.status(500).send()
+    }
+})
+
+/* Task Model */
+app.delete('/tasks/:id', async(req,res)=>{
+    try{
+        const task = await Task.findByIdAndDelete(req.params.id)
+
+        if(!task){
+            return res.status(404).send()
+        }
+        res.send(task)
+    }catch(e){
+        res.status(500).send()
+    }
+})
 
 // Start server listening
 app.listen(port, ()=>{
