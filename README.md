@@ -10,12 +10,14 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 - Run `npm run dev` to start the dev server
     
-- Run `npm start` to start the prod scripts 
+- Run `npm start` to start the prod server 
 
 - Visit `localhost:3000` in a browser window to access the REST API
 
+# API Endpoints
+TODO
 # API Testing ( Screenshots included )
-
+TODO
 # Concepts learned:
 
 - MongoDB and Mongoose
@@ -33,6 +35,6 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 The app is deployed to Heroku Dyno offered under GitHub Dev Pack.
 
-Give it about 15-30 seconds to load.
+Give it about 15 seconds to load.
 
 
