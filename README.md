@@ -33,6 +33,6 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 The app is deployed to Heroku Dyno offered under GitHub Dev Pack.
 
-Give it about 15-30 seconds to load.
+Give it about 15 seconds to load.
 
 
