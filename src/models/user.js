@@ -1,9 +1,11 @@
 
 const mongoose = require('mongoose')
 const validator = require('validator')
+const brcypt = require('bcryptjs')
 
-// Create a User model 
-const User = mongoose.model('User',{
+
+// Created userSchema to use mongoose middleware
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,  // Validation added (In-built)
@@ -42,5 +44,19 @@ const User = mongoose.model('User',{
 
     }
 })
+
+// Did not use ES6 arrow function as we need to bind 'this'
+userSchema.pre('save', async function (next){
+    var user = this
+    if(user.isModified('password')){
+        user.password = await brcypt.hash(user.password, 8)
+    }
+    // console.log('Just before Saving')
+    
+    next() // Added to show that async function is done running
+})
+
+// Create a User model 
+const User = mongoose.model('User',userSchema)
 
 module.exports=User
