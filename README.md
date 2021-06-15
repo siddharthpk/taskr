@@ -10,7 +10,7 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 - Run `npm run dev` to start the dev server
     
-- Run `npm start` to start the prod scripts 
+- Run `npm start` to start the prod server 
 
 - Visit `localhost:3000` in a browser window to access the REST API
 
