@@ -1,7 +1,7 @@
 //Importing all files and modules
 const express = require('express')
-const userRouter = require('./routes/user')
-const taskRouter = require('./routes/task')
+const userRouter = require('./router/user')
+const taskRouter = require('./router/task')
 require('./db/mongoose') // --> DO NOT DELETE
 
 // Starting express server
