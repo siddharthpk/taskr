@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        unique: true,
         required: true,
         trim: true,
         lowercase: true,
@@ -45,7 +46,24 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+userSchema.statics.findByCredentials = async (email, password) =>{
+    const user = await User.findOne({email})
+
+    if(!user){
+        throw new Error("Unable to login")
+    }
+
+    const isMatch = await bcrypt.hash(password,user.password)
+
+    if(!isMatch){
+        throw new Error("Unable to login") //Note: don't use a specific error msg such as password not matching as that could lead to a potential security leak.
+    }
+
+    return user
+}
+
 // Did not use ES6 arrow function as we need to bind 'this'
+// Hash the plain text password before saving
 userSchema.pre('save', async function (next){
     var user = this
     if(user.isModified('password')){
