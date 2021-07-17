@@ -1,7 +1,8 @@
 
 const mongoose = require('mongoose')
 const validator = require('validator')
-const brcypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 
 // Created userSchema to use mongoose middleware
@@ -43,9 +44,31 @@ const userSchema = new mongoose.Schema({
             }
         }
 
-    }
+    },
+    tokens:[{
+        token:{
+            type: String,
+            required: true
+        }
+    }]
+    
 })
 
+
+/*      METHOD TO GENERATE JWT TOKENS AT LOGIN    */
+userSchema.methods.genAuthToken = async function () {
+    const user = this
+    const token = jwt.sign({_id: user.id.toString()}, 'thisistheuserstring')
+    
+    
+    user.tokens = user.tokens.concat({token})
+    await user.save()
+    
+    return(token)
+}
+
+
+/*      METHOD TO CHECK IF USER LOGIN CREDENTIALS WORK    */
 userSchema.statics.findByCredentials = async (email, password) =>{
     const user = await User.findOne({email})
 
@@ -67,7 +90,7 @@ userSchema.statics.findByCredentials = async (email, password) =>{
 userSchema.pre('save', async function (next){
     var user = this
     if(user.isModified('password')){
-        user.password = await brcypt.hash(user.password, 8)
+        user.password = await bcrypt.hash(user.password, 8)
     }
     // console.log('Just before Saving')
     
