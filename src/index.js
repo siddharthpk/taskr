@@ -9,11 +9,11 @@ const app = express()
 const port = process.env.PORT || 3000
 
 // Express Middleware for token authentication step
-app.use((req, res, next)=>{
-    //console.log(req.method, req.path)
-    //next()
-    res.status(503).send('Under Maintenance')
-})
+// app.use((req, res, next)=>{
+//     //console.log(req.method, req.path)
+//     //next()
+//     res.status(503).send('Under Maintenance')
+// })
 
 // Accepting json
 app.use(express.json())

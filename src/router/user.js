@@ -1,6 +1,8 @@
 const express = require('express')
 const User = require('../models/user')
+const auth = require('../middleware/auth')
 const router = new express.Router()
+
 
 // User SignUp
 router.post('/users', async (req,res) =>{
@@ -30,7 +32,8 @@ router.post('/users/login', async(req,res)=>{
 })
 
 // Read All Users
-router.get('/users', async (req,res)=>{
+// Middleware is added as the second arg to add authentication
+router.get('/users', auth ,async (req,res)=>{
     try{
         const users = await User.find({})
         res.send(users)
