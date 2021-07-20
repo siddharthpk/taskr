@@ -33,13 +33,8 @@ router.post('/users/login', async(req,res)=>{
 
 // Read All Users
 // Middleware is added as the second arg to add authentication
-router.get('/users', auth ,async (req,res)=>{
-    try{
-        const users = await User.find({})
-        res.send(users)
-    } catch(e){
-        res.status(500).send()
-    }
+router.get('/users/me', auth, async (req,res)=>{
+    res.send(req.user)
 })
 
 // Read user by ID, using express route params
