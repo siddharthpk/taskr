@@ -20,8 +20,10 @@ const auth = async (req, res, next) =>{
             throw new Error() // Triggers catch 
         }
 
-        // Giving access to route handler to access user instead of wasting resources by multiple access req
+        // Giving route handler access to user instead of wasting resources by multiple access req
         req.user = user
+        // Giving route handler access to token for logging out 
+        req.token = token
         next()
 
     }catch(e){
