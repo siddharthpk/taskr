@@ -1,6 +1,6 @@
 # Taskr
  
-This repo hosts code for a minimalistic Task App that interacts with a REST API to perform operations to a MongoDB database. 
+This repo hosts the code for a Task App that uses a REST API to allow users to perform operations to a MongoDB database in the backend.  
 
 # Before Deployment
 
@@ -18,10 +18,19 @@ This repo hosts code for a minimalistic Task App that interacts with a REST API 
 
 ## User Model
 
+### Login User
+
+### Signup User
+ 
+### Logout User
+
+### Update User
+
 ## Task Model
 
 # API Testing ( Screenshots included )
 TODO
+
 # Concepts learned:
 
 - MongoDB and Mongoose
@@ -32,12 +41,13 @@ TODO
 - Authentication using JWT 
 - Middleware
 - API Testing with Postman
+- Postman Environments Set-up
 - Software Testing with Jest
   
 
 # Deployment
 
-The app is deployed to Heroku Dyno offered under GitHub Dev Pack.
+The app will be deployed to Heroku Dyno offered under GitHub Dev Pack.
 
 Give it about 15 seconds to load.
 
