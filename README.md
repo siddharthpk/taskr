@@ -29,6 +29,7 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 ## Task Model
 
 # API Testing ( Screenshots included )
+
 TODO
 
 # Concepts learned:
@@ -41,7 +42,7 @@ TODO
 - Authentication using JWT 
 - Middleware
 - API Testing with Postman
-- Postman Environments Set-up
+- Postman Env Set-up & Auth Set-up
 - Software Testing with Jest
   
 
