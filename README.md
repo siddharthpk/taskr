@@ -44,6 +44,7 @@ TODO
 - API Testing with Postman
 - Postman Env Set-up & Auth Set-up
 - Software Testing with Jest
+- Pagination/Sorting
   
 
 # Deployment
