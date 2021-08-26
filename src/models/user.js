@@ -71,7 +71,7 @@ userSchema.methods.toJSON = function (){
 /*      METHOD TO GENERATE JWT TOKENS AT LOGIN    */
 userSchema.methods.genAuthToken = async function () {
     const user = this
-    const token = jwt.sign({_id: user.id.toString()}, 'thisistheuserstring')
+    const token = jwt.sign({_id: user.id.toString()}, process.env.JWT_SECRET)
     
     
     user.tokens = user.tokens.concat({token})

@@ -8,7 +8,7 @@ const auth = async (req, res, next) =>{
         console.log(token)
         
         // decoded stores the decoded payload for the user after verifying the token
-        const decoded = jwt.verify(token, 'thisistheuserstring')
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
         /* Used findOne and not findById as same user can have multiple tokens
             tokens.token is used to verify that only the logged in session works 
