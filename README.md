@@ -4,6 +4,8 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 
 # Before Deployment
 
+## Dependencies
+
 - Run `npm install` to install all required dependencies.
 
 - Create a `.env` file and add the private API_KEYS 
@@ -13,6 +15,15 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 - Run `npm start` to start the prod server 
 
 - Visit `localhost:3000` in a browser window to access the REST API
+
+## Database
+
+- Locally, you can start your MongoDB instance by executing `/Path/To/MongoDB/bin/mongod --dbpath=/Path/To/DB/Data/Location`
+
+- At times, you may forget to stop the db instance and try this command resulting in an exit code: 48 {Shutting Down}. 
+    For this execute `ps aux | grep -v grep | grep mongod `
+    And then take the PID from the result and execute `kill -9 PID`
+    Re-execute the line in the previous statment and start your db instance
 
 # API Endpoints
 
