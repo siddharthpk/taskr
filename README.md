@@ -8,9 +8,15 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 
 - Run `npm install` to install all required dependencies.
 
-- Create a `.env` file and add the private API_KEYS 
+- Create a config directory under the root directory
+    `dev.env` file for the dev server and add the private API_KEYS 
+    `test.env` file for the test server and add the private API_KEYS 
+
+    Note: Remember to add these files to `gitignore`
 
 - Run `npm run dev` to start the dev server
+
+- Run `npm run test` to start the test server
     
 - Run `npm start` to start the prod server 
 
