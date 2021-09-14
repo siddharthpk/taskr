@@ -1,9 +1,10 @@
 const express = require('express')
 const Task = require('../models/task')
+const auth = require('../middleware/auth')
 const router = new express.Router()
 
 // Task Creation 
-router.post('/tasks', async (req,res)=>{
+router.post('/tasks', auth, async (req,res)=>{
     const task = new Task(req.body)
 
     try{
@@ -16,7 +17,7 @@ router.post('/tasks', async (req,res)=>{
 })
 
 // Read all tasks
-router.get('/tasks', async (req,res)=>{
+router.get('/tasks', auth, async (req,res)=>{
     try{
         const tasks = await Task.find({})
         res.send(tasks)
@@ -26,7 +27,7 @@ router.get('/tasks', async (req,res)=>{
 })
 
 // Read task by ID, using express route params
-router.get('/tasks/:id', async (req,res)=>{
+router.get('/tasks/:id', auth, async (req,res)=>{
     const _id = req.params.id
 
     try{
@@ -42,7 +43,7 @@ router.get('/tasks/:id', async (req,res)=>{
 })
 
 /* Task Model */
-router.patch('/tasks/:id', async (req,res)=>{
+router.patch('/tasks/:id',auth, async (req,res)=>{
     const toUpdate = Object.keys(req.body)
     const allowUpdate = ['description','completed']
     const isValidOp = toUpdate.every((update)=>  allowUpdate.includes(update))
@@ -72,7 +73,7 @@ router.patch('/tasks/:id', async (req,res)=>{
 
 
 /* Task Deleting */
-router.delete('/tasks/:id', async(req,res)=>{
+router.delete('/tasks/:id',auth, async(req,res)=>{
     try{
         const task = await Task.findByIdAndDelete(req.params.id)
 
