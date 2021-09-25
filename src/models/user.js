@@ -1,10 +1,8 @@
-
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Task = require('./task')
-
 
 // Created userSchema to use mongoose middleware
 const userSchema = new mongoose.Schema({
@@ -52,7 +50,8 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
-    
+},{
+    timestamps: true
 })
 
 
