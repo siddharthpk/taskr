@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Task = require('./task')
 
 
 // Created userSchema to use mongoose middleware
@@ -116,7 +117,14 @@ userSchema.pre('save', async function (next){
     next() // Added to show that async function is done running
 })
 
+// Delete User tasks when User is deleted
+userSchema.pre('remove', async function (next) {
+    const user = this
+    await Task.deleteMany({owner:user._id})
+    next()
+})
+
 // Create a User model 
 const User = mongoose.model('User',userSchema)
 
-module.exports=User
+module.exports = User
