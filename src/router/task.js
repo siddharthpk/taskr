@@ -1,6 +1,7 @@
 const express = require('express')
 const Task = require('../models/task')
 const auth = require('../middleware/auth')
+const { json } = require('express/lib/response')
 const router = new express.Router()
 
 // POST /tasks Creation 
@@ -22,13 +23,20 @@ router.post('/tasks', auth, async (req,res)=>{
 /* 
     GET /tasks?completed
     GET /tasks?limit=5&skip=3 Limits to tasks/pages and allows skipping certain tasks/pages
-    GET /task?skip
+    GET /task?sortBy=createdAt_asc/desc
+    GET /task?sortBy=createdAt:asc/desc
 */
 router.get('/tasks', auth, async (req,res)=>{
     const match = {}
+    const sort = {}
 
     if(req.query.completed){
         match.completed = req.query.completed === 'true'
+    }
+
+    if(req.query.sortBy){
+        const sortParts = req.query.sortBy.split(':')
+        sort[sortParts[0]] = sortParts[1] === 'desc' ? -1 : 1 
     }
 
     try{
@@ -38,8 +46,10 @@ router.get('/tasks', auth, async (req,res)=>{
             match,
             options: {
                 limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip)
-
+                skip: parseInt(req.query.skip),
+                sort: {
+                    createdAt: 1 // Asc = 1, Desc = -1
+                }
             }
         }).execPopulate()
         res.send(req.user.tasks)
