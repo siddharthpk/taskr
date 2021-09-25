@@ -13,7 +13,7 @@ const Task = mongoose.model('Task', {
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'User'  // Allows to create reference with another model in mongoose
     }
 })
 

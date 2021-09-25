@@ -67,6 +67,12 @@ userSchema.methods.toJSON = function (){
     return userObject
 }
 
+/* Virtual attribute in mongoose, not stored in DB */
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    foreignField: 'owner'
+})
 
 /*      METHOD TO GENERATE JWT TOKENS AT LOGIN    */
 userSchema.methods.genAuthToken = async function () {
