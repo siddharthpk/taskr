@@ -35,15 +35,35 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 
 ## User Model
 
-### Login User
+### GET /users/me
 
-### Signup User
+### GET /users/id
  
-### Logout User
+### POST /users
 
-### Update User
+### POST /users/login
+
+### POST /users/logout
+
+### POST /users/logoutAll
+
+### PATCH /users/me
+
+### DELETE /users/me
 
 ## Task Model
+
+### GET /tasks/ 
+
+### GET /tasks/id 
+
+### GET /tasks?sortBy=createdAt:asc/desc& 
+
+### POST /tasks
+
+### PATCH /tasks/id 
+
+### DELETE /tasks/id
 
 # API Testing ( Screenshots included )
 
