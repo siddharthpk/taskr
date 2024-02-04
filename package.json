@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "test": "env-cmd ./config/test.env jest --watch"
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
   },
   "jest": {
     "testEnvironment": "node"
@@ -23,14 +22,14 @@
   },
   "homepage": "https://github.com/siddharthpk/taskr#readme",
   "dependencies": {
-    "@sendgrid/mail": "^7.4.6",
+    "@sendgrid/mail": "^8.1.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^3.6.7",
     "mongoose": "^5.12.12",
     "multer": "^1.4.3",
-    "sharp": "^0.29.1",
+    "sharp": "^0.33.2",
     "validator": "^13.6.0"
   },
   "devDependencies": {
