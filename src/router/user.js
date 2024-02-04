@@ -1,7 +1,9 @@
 const express = require('express')
+const multer = require('multer')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
 const router = new express.Router()
+
 
 
 // User SignUp
@@ -10,7 +12,9 @@ router.post('/users', async (req,res) =>{
    
     try{
         await user.save()
+        console.log("Before Token Generated")
         const token = await user.genAuthToken()
+        console.log("After Token Generated")
         res.status(201).send({user, token})
     } catch (e){
         res.status(400).send(e)
@@ -95,6 +99,16 @@ router.delete('/users/me', auth, async(req,res)=>{
     }catch(e){
         res.status(500).send()
     }
+})
+
+// Configuring multer
+const upload = multer({
+    dest: 'avatars'
+})
+
+// Avatar file upload, middleware uses upload.single() to register
+router.post('/users/me/avatar', upload.single('avatar'), (req,res)=>{
+    res.send()
 })
 
 
