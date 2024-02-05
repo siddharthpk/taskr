@@ -118,12 +118,18 @@ const upload = multer({
 /* User Avatar File Upload */ 
 // Middleware uses upload.single() to register and error handling added, auth added before upload starts
 router.post('/users/me/avatar', auth, upload.single('avatar'),async (req,res)=>{
-    req.user.avatar = req.file.buffer
+    req.user.avatar = req.file.buffer // To save the image
     await req.user.save()
     res.send()
 },(error, req, res, next)=>{
     res.status(400).send({error: error.message})
 })
 
+/* User Avatar Delete*/
+router.delete('/users/me/avatar', auth, async(req,res)=>{
+    req.user.avatar = undefined // To delete/clear the image
+    await req.user.save()
+    res.send()
+})
 
 module.exports = router
