@@ -6,7 +6,7 @@ require('./db/mongoose') // --> DO NOT DELETE
 
 // Starting express server
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 // Accepting json
 app.use(express.json())
