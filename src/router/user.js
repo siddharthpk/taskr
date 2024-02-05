@@ -103,7 +103,17 @@ router.delete('/users/me', auth, async(req,res)=>{
 
 // Configuring multer
 const upload = multer({
-    dest: 'avatars'
+    dest: 'avatars',
+    // Validation for avatar upload
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb){
+        if(!file.originalname.match(/\.(png|jpg|jpeg)$/)){
+            return cb(new Error('Please upload an image'))
+        }
+        cb(undefined, true)
+    } 
 })
 
 // Avatar file upload, middleware uses upload.single() to register
