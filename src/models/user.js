@@ -49,7 +49,10 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    avatar: {
+        type: Buffer // Allows image binary data to be stored in db with user 
+    }
 },{
     timestamps: true
 })

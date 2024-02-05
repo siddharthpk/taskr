@@ -103,7 +103,6 @@ router.delete('/users/me', auth, async(req,res)=>{
 
 // Configuring multer
 const upload = multer({
-    dest: 'avatars',
     // Validation for avatar upload
     limits: {
         fileSize: 1000000
@@ -116,8 +115,11 @@ const upload = multer({
     } 
 })
 
-// Avatar file upload, middleware uses upload.single() to register and error hanlding added
-router.post('/users/me/avatar', upload.single('avatar'), (req,res)=>{
+/* User Avatar File Upload */ 
+// Middleware uses upload.single() to register and error handling added, auth added before upload starts
+router.post('/users/me/avatar', auth, upload.single('avatar'),async (req,res)=>{
+    req.user.avatar = req.file.buffer
+    await req.user.save()
     res.send()
 },(error, req, res, next)=>{
     res.status(400).send({error: error.message})
