@@ -5,7 +5,6 @@ const auth = async (req, res, next) =>{
     try{
         // request headers can be accesed as key-value below
         const token = req.header('Authorization').replace('Bearer ','')
-        console.log(token)
         
         // decoded stores the decoded payload for the user after verifying the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
