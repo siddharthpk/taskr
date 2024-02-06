@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/siddharthpk/taskr#readme",
   "dependencies": {
-    "@img/sharp-libvips-darwin-x64": "^1.0.1",
     "@sendgrid/mail": "^8.1.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
