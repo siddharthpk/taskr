@@ -23,6 +23,7 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 - Visit `localhost:3000` in a browser window to access the REST API
 
 ## Database
+- The API uses a MongoDB cloud cluster as its production database.
 
 - Locally, you can start your MongoDB instance by executing `/Path/To/MongoDB/bin/mongod --dbpath=/Path/To/DB/Data/Location`
 
@@ -35,39 +36,41 @@ This repo hosts the code for a Task App that uses a REST API to allow users to p
 
 ## User Model
 
-### GET /users/me
+- GET User /users/me
 
-### GET /users/id
+- GET User by Id /users/id
  
-### POST /users
+- POST Create User /users
 
-### POST /users/login
+- POST Login User /users/login
 
-### POST /users/logout
+- POST logout User /users/logout
 
-### POST /users/logoutAll
+- POST Logout All /users/logoutAll
 
-### PATCH /users/me
+- PATCH Update User /users/me
 
-### DELETE /users/me
+- DELETE Delete User /users/me
+
+- POST Upload/Update Avatar  /users/me/avatar
+
+- DELETE Delete Avatar /users/me/avatar
 
 ## Task Model
 
-### GET /tasks/ 
+- GET Task by Id /tasks/id 
 
-### GET /tasks/id 
+- GET Tasks /tasks?sortBy=createdAt:asc/desc& 
 
-### GET /tasks?sortBy=createdAt:asc/desc& 
+- POST Create Task /tasks
 
-### POST /tasks
+- PATCH Update Task /tasks/id 
 
-### PATCH /tasks/id 
+- DELETE Delete Task /tasks/id
 
-### DELETE /tasks/id
+# API Docs
 
-# API Testing ( Screenshots included )
-
-TODO
+API doc generated using POSTMAN and can be found [here](https://documenter.getpostman.com/view/14939228/2s9Yyy9eeb)!
 
 # Concepts learned:
 
@@ -82,12 +85,12 @@ TODO
 - Postman Env Set-up & Auth Set-up
 - Software Testing with Jest
 - Pagination/Sorting
+- File Uploads
+- Testing Using Jest
   
 
 # Deployment
 
-The app will be deployed to Heroku Dyno offered under GitHub Dev Pack.
-
-Give it about 15 seconds to load.
+The app is deployed to Heroku!
 
 
