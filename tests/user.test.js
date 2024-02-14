@@ -17,14 +17,23 @@ beforeEach(async () => {
 test('User SignUp should be successful', async ()=>{
     await request(app).post('/users').send({
         name: 'Sid',
-        email: 'siddharthpk@icloud.com',
+        email: 'sidpk@test.com',
         password: 'RERRFRgrgsrgs#@$'
     }).expect(201)
 })
 
+// Existing User Login
 test('Should login existing user', async () => {
     await request(app).post('/users/login').send({
         email: userOne.email,
         password: userOne.password
     }).expect(200)
+})
+
+// Non-existent User Login
+test('Should not login nonexistent user', async () => {
+    await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: '51f45rf5rf'
+    }).expect(400)
 })
