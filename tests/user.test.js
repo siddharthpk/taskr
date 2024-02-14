@@ -44,3 +44,12 @@ test('Should not login nonexistent user', async () => {
         password: '51f45rf5rf'
     }).expect(400)
 })
+
+// Get User Profile
+test('Should get profile for user', async () => {
+    await request(app)
+        .get('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send()
+        .expect(200)
+})
