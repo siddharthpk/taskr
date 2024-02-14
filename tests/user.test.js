@@ -27,6 +27,20 @@ test('User SignUp should be successful', async ()=>{
         email: 'sidpk@test.com',
         password: 'RERRFRgrgsrgs#@$'
     }).expect(201)
+
+    // Assert that the database was changed correctly
+    const user = await User.findById(response.body.user._id)
+    expect(user).not.toBeNull()
+
+    // Assertions about the response
+    expect(response.body).toMatchObject({
+        user: {
+            name: 'Sid',
+            email: 'sidpk@test.com'
+        },
+        token: user.tokens[0].token
+    })
+    expect(user.password).not.toBe('RERRFRgrgsrgs#@$')
 })
 
 // Existing User Login
