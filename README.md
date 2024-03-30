@@ -84,7 +84,6 @@ API doc generated using POSTMAN and can be found [here](https://documenter.getpo
 - Software Testing with Jest
 - Pagination/Sorting
 - File Uploads
-- Testing Using Jest
   
 
 # Deployment
